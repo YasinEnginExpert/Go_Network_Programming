@@ -1,0 +1,57 @@
+i18n → Internationalization
+Uygulamanın çok dilli, çok kültürlü, çok karakter setli şekilde yazılmasıdır.
+
+l10n → Localization
+Bir kültüre özel özelleştirme işlemidir.
+
+Karakter, yazının en küçük anlam taşıyan birimidir.
+Karakter basitçe soyut bir kavramdır
+
+Karakter “a” → herhangi bir fiziksel “a” değildir.
+Tıpkı “mükemmel bir daire” fikrinin, çizdiğimiz dairelerden bağımsız olması gibi.
+
+Aynı karakter, farklı fontlarda farklı şekillerde yazılabilir ama aynı karakterdir.
+
+
+Bir karakter soyut bir kavramdır.
+Bilgisayarda bunu temsil eden şey:
+
+ASCII → “a” = 0x61
+UTF-8 → “你” = E4 BD A0
+Unicode → “π” = U+03C0
+
+Yani karakter ≠ byte
+Karakter soyuttur → byte ları encoding belirler.
+
+Bir karakteri bilgisayarda saklamak veya iletmek için bir BYTE dizisine dönüştürme işlemine “encoding” denir.
+
+ISO 8859 (Latin-1 ve diğerleri)
+
+
+ISO-8859-1 → Batı Avrupa
+Türkçe yok ama İngilizce, Almanca, Fransızca, İspanyolca, İskandinav dilleri var.
+ISO-8859-5 → Rusça / Kiril
+ISO-8859-8 → İbranice
+
+Dünyadaki tüm karakterler tek bir evrensel sistemde bulunsun.
+Ama Unicode sadece code point’tir.
+Encode edilmesi için UTF formatları gerekir.
+
+Unicode → Encoding Türleri
+Karıştırma:
+Unicode = karakter kümesi + code points
+UTF = encoding yöntemleri
+En yaygın:
+
+✔ UTF-8 (de facto STANDARD)
+ASCII ile tamamen uyumlu
+Değişken uzunluk (1–4 byte)
+Dünya çapında %95 kullanım
+
+✔ UTF-16
+Windows ve Java dünyası
+2 veya 4 byte
+
+✔ UTF-32
+Her karakter = 4 byte
+Çok yer kaplar, az kullanılır
