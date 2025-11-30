@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+
+package order;
+
+option go_package = "../gen;mainpb";
+
+import "user/user.proto";
+
+
+message Order {
+    string order_id = 1;
+    double total_price = 2;
+
+    // Eğer User bilgisi taşıyacaksa:
+    user.User customer = 3;
+
+    repeated OrderItem items = 4;
+}
+
+
+message OrderItem {
+    string product_id = 1;
+    string product_name = 2;
+    uint32 quantity = 3;
+    double price = 4;
+}

@@ -1,0 +1,15 @@
+I inspire by Go Bootcamp: With gRPC and Protocol Buffers (HTTP/S, HTTP2)
+
+protoc \
+  -I=. \
+  -I=user \
+  --go_out=gen \
+  --go_opt=paths=source_relative \
+  main.proto order.proto user/user.proto
+
+
+
+-I=. → bulunduğun klasörü include path yapar
+-I=user → user/ klasörünü include path yapar
+--go_out=gen → bütün .pb.go dosyaları gen/ klasörüne gider
+--go_opt=paths=source_relative → import path’lerini düzeltir
