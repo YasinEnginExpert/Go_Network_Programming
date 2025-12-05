@@ -3,7 +3,8 @@ package main
 import (
 	"context"
 	"log"
-	mainapipb "simplegrpcserver/proto/gen"
+	mainapipb "simplegrpcserver/proto/gen" // Derlenen proto paketleri
+	farewellpb "simplegrpcserver/proto/gen/farewell"
 	"time"
 
 	"google.golang.org/grpc"
@@ -12,13 +13,15 @@ import (
 
 func main() {
 
-	// Sertifikayı yükle
+	// --- TLS Sertifikasını yükle ---
+	// NewClientTLSFromFile: client tarafında TLS doğrulaması için sertifika verir
+	// İkinci parametre serverNameOverride -> TLS handshake sırasında CN eşleşmesi için "localhost"
 	creds, err := credentials.NewClientTLSFromFile("cert.pem", "localhost")
 	if err != nil {
 		log.Fatalln("Failed to load TLS certificate:", err)
 	}
 
-	// TLS ile bağlan
+	// --- gRPC Sunucusuna TLS ile bağlan ---
 	conn, err := grpc.Dial(
 		"localhost:50051",
 		grpc.WithTransportCredentials(creds),
@@ -28,20 +31,51 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := mainapipb.NewCalculatorClient(conn)
+	// --- RPC client örneklerini oluştur ---
+	calculatorClient := mainapipb.NewCalculatorClient(conn)
+	greeterClient := mainapipb.NewGreeterClient(conn)
+	farewellClient := farewellpb.NewAufWiedersehenClient(conn)
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	// --- Zaman aşımı ekleyerek güvenli bir context oluştur ---
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
-	req := mainapipb.AddRequest{
+	// --- Calculator Servisine istek ---
+	addReq := &mainapipb.AddRequest{
 		A: 10,
 		B: 20,
 	}
 
-	res, err := client.Add(ctx, &req)
+	addRes, err := calculatorClient.Add(ctx, addReq)
 	if err != nil {
 		log.Fatalln("Add RPC failed:", err)
 	}
 
-	log.Println("Sum:", res.Sum)
+	// --- Farewell Servisine istek ---
+	reqGoodBye := &farewellpb.GoodByeRequest{
+		Name: "Yasin",
+	}
+	goodbyeRes, err := farewellClient.BigGoodBye(ctx, reqGoodBye)
+	if err != nil {
+		log.Fatalln("Goodbye RPC failed:", err)
+	}
+
+	// --- Greeter Servisine istek ---
+	greetReq := &mainapipb.HelloRequest{
+		Name: "Yasin",
+	}
+
+	greetRes, err := greeterClient.Greet(ctx, greetReq)
+	if err != nil {
+		log.Fatalln("Could not greet:", err)
+	}
+
+	// --- RPC çıktıları ---
+	log.Println("Sum:", addRes.Sum)
+	log.Println("Greeting message:", greetRes.Message)
+	log.Println("Goodbye message:", goodbyeRes.Message)
+
+	// --- Bağlantı durumunu yazdır ---
+	state := conn.GetState()
+	log.Println("Connection State:", state)
 }
