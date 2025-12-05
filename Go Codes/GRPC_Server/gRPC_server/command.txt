@@ -14,3 +14,6 @@ openssl req -x509 -nodes -newkey rsa:4096 `
   -out cert.pem `
   -days 365 `
   -subj "/CN=localhost"
+
+
+protoc -I=proto --go_out=. --go-grpc_out=. proto/main.proto proto/greeter.proto
