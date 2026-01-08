@@ -1,0 +1,63 @@
+CONTAINERLAB (WSL) KULLANIM TALİMATI
+==================================
+
+Bu doküman iki bölüme ayrılmıştır:
+1) İlk kez kurulum (sistemde hiç yoksa)
+2) Mevcut topoloji ile çalışma (kuruluysa)
+
+
+================================================
+1) İLK KEZ KURULUM (SIFIRDAN)
+================================================
+
+Ön koşul
+--------
+WSL kurulmuş olmalı (Ubuntu önerilir).
+Referans:
+https://github.com/srl-labs/wsl-containerlab
+
+
+1.1 Docker Kurulumu (WSL içinde)
+--------------------------------
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+
+Docker çalışıyor mu kontrol:
+docker version
+
+
+1.2 Containerlab Kurulumu (WSL içinde)
+--------------------------------------
+bash -c "$(curl -sL https://get.containerlab.dev)"
+containerlab version
+
+
+1.3 Lab Topolojisini Kurma (İLK DEPLOY)
+---------------------------------------
+Topo dosyasının (topo.yml) bulunduğu dizinde:
+
+sudo containerlab deploy -t topo.yml
+
+
+1.4 Lab Durumunu Kontrol Etme
+-----------------------------
+containerlab inspect -t topo.yml
+
+
+1.5 (Gerekirse) Windows’tan WSL Network’e Route Ekleme
+-------------------------------------------------------
+WSL IP adresini öğren (WSL içinde):
+
+ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+
+Örnek çıktı:
+172.20.20.1
+
+Windows CMD veya PowerShell’i **Yönetici olarak** aç:
+
+route add <Management_Subnet> MASK <Management_Mask> <WSL_IP>
+
+Örnek:
+route add 172.20.20.0 MASK 255.255.255.0 172.20.20.1

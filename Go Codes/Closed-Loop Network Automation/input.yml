@@ -1,0 +1,9 @@
+device:
+  hostname: router-1
+  platform: iosxr
+
+intent:
+  service: grpc
+  port: 57777
+  tls: true
+

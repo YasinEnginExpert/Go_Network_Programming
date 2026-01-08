@@ -1,0 +1,17 @@
+router:
+  - hostname: sandbox-iosxe-latest-1.cisco.com
+    platform: cisco_iosxe
+    username: developer
+    password: C1sco12345
+
+  - hostname: sandbox-nxos-1.cisco.com
+    platform: cisco_nxos
+    username: developer
+    password: C1sco12345
+
+  - hostname: sandbox-iosxr-1.cisco.com
+    platform: cisco_iosxr
+    username: developer
+    password: C1sco12345
+
+  

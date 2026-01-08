@@ -1,0 +1,48 @@
+================================================
+2) MEVCUT TOPOLOJİ İLE ÇALIŞMA
+================================================
+
+Bu bölüm, lab daha önce kurulmuşsa kullanılır.
+
+
+2.1 Mevcut Lab Durumunu Görüntüleme
+-----------------------------------
+containerlab inspect -t topo.yml
+
+
+2.2 Çalışmayan Container’ları Başlatma
+--------------------------------------
+docker start clab-netgo-srl1 clab-netgo-srl2 clab-netgo-cvx
+
+
+2.3 Container’ların Çalıştığını Kontrol Etme
+---------------------------------------------
+docker ps
+
+
+2.4 Container İçine Girme
+-------------------------
+Örnek: srl1 container’ına bash ile girme
+
+docker exec -it clab-netgo-srl1 bash
+
+
+2.5 Lab’ı Silip Yeniden Kurma (Temiz Başlangıç)
+------------------------------------------------
+sudo containerlab destroy -t topo.yml
+sudo containerlab deploy -t topo.yml
+
+
+================================================
+3) HIZLI KONTROL ÖZETİ
+================================================
+
+Lab ayakta mı?
+containerlab inspect -t topo.yml
+
+Container’lar çalışıyor mu?
+docker ps
+
+Her şeyi sıfırla:
+sudo containerlab destroy -t topo.yml
+sudo containerlab deploy -t topo.yml
