@@ -95,84 +95,84 @@ All code examples are organized within the `Go Codes/` directory. Each subdirect
 
 | Directory | Description |
 |-----------|-------------|
-| `Day Time Server/` | RFC 867 Daytime Protocol server implementation |
-| `FTP client and server/` | File Transfer Protocol client and server examples |
-| `Client and Server Directory Protocol/` | Directory listing service implementation |
-| `Get Head Info/` | HTTP HEAD request handling and response parsing |
-| `HTTP_APP/` | HTTP application server examples |
-| `MultiProtocolServer/` | Server supporting multiple protocols simultaneously |
+| `daytime_server/` | RFC 867 Daytime Protocol server implementation |
+| `ftp_protocol/` | File Transfer Protocol client and server examples |
+| `directory_protocol/` | Directory listing service implementation |
+| `http_head_info/` | HTTP HEAD request handling and response parsing |
+| `http_app/` | HTTP application server examples |
+| `multi_protocol_server/` | Server supporting multiple protocols simultaneously |
 
 ### gRPC and Modern RPC
 
 | Directory | Description |
 |-----------|-------------|
-| `GRPC_Client/` | gRPC client implementation with various call patterns |
-| `GRPC_Server/` | gRPC server with service definitions and handlers |
-| `GRPC_STREAM/` | Server-side streaming RPC examples |
-| `GRPC_STREAM_CLIENT/` | Client-side and bidirectional streaming examples |
+| `grpc_client/` | gRPC client implementation with various call patterns |
+| `grpc_server/` | gRPC server with service definitions and handlers |
+| `grpc_stream_server/` | Server-side streaming RPC examples |
+| `grpc_stream_client/` | Client-side and bidirectional streaming examples |
 
 ### Concurrency and Performance
 
 | Directory | Description |
 |-----------|-------------|
-| `Multithreadedecho/` | Concurrent echo server with goroutine pool |
-| `Goroutine/` | Goroutine lifecycle and management patterns |
-| `Channels/` | Channel-based communication examples |
-| `Message passing/` | Inter-process and distributed messaging patterns |
-| `Timeoutandkeepalive/` | Connection timeout and keep-alive implementations |
+| `multithreaded_echo/` | Concurrent echo server with goroutine pool |
+| `goroutine/` | Goroutine lifecycle and management patterns |
+| `channels/` | Channel-based communication examples |
+| `message_passing/` | Inter-process and distributed messaging patterns |
+| `timeout_keepalive/` | Connection timeout and keep-alive implementations |
 
 ### Internet and Network Layer
 
 | Directory | Description |
 |-----------|-------------|
-| `InternetLayer/` | IP addressing, CIDR calculations, and routing logic |
-| `IPv4 router/` | IPv4 packet routing and forwarding simulation |
-| `IP mask/` | Subnet mask operations and network calculations |
-| `ICMP/` | ICMP message handling and ping implementation |
-| `Lookup port/` | Service port resolution and discovery |
+| `internet_layer/` | IP addressing, CIDR calculations, and routing logic |
+| `ipv4_router/` | IPv4 packet routing and forwarding simulation |
+| `ip_mask/` | Subnet mask operations and network calculations |
+| `icmp/` | ICMP message handling and ping implementation |
+| `port_lookup/` | Service port resolution and discovery |
 
 ### Link Layer
 
 | Directory | Description |
 |-----------|-------------|
-| `Linklayer/` | Ethernet frame handling, ARP, and MAC operations |
+| `link_layer/` | Ethernet frame handling, ARP, and MAC operations |
 
 ### Serialization and Data Encoding
 
 | Directory | Description |
 |-----------|-------------|
-| `JSON/` | JSON encoding and decoding for network messages |
-| `JSON Serialization/` | Advanced JSON marshaling techniques |
-| `Protocolbuffers/` | Protocol Buffers schema definition and usage |
-| `Gob/` | Go's native binary encoding format |
-| `Gob Echo Client and Server/` | Gob-based network communication |
-| `ASN.1/` | Abstract Syntax Notation One encoding |
-| `ASN.1 Daylight Client and Server/` | ASN.1 protocol implementation |
-| `Textproto/` | Text-based protocol parsing utilities |
-| `Manuel Serialization/` | Custom binary serialization implementations |
-| `Modern Serialization/` | Contemporary serialization approaches |
+| `json/` | JSON encoding and decoding for network messages |
+| `json_serialization/` | Advanced JSON marshaling techniques |
+| `protocol_buffers/` | Protocol Buffers schema definition and usage |
+| `gob/` | Go's native binary encoding format |
+| `gob_echo/` | Gob-based network communication |
+| `asn1/` | Abstract Syntax Notation One encoding |
+| `asn1_daytime/` | ASN.1 protocol implementation |
+| `textproto/` | Text-based protocol parsing utilities |
+| `manual_serialization/` | Custom binary serialization implementations |
+| `modern_serialization/` | Contemporary serialization approaches |
 
 ### Security and Cryptography
 
 | Directory | Description |
 |-----------|-------------|
-| `Asymetrickey/` | RSA and elliptic curve cryptography examples |
-| `SymmetricHashingMerkle/` | Hash functions and Merkle tree implementations |
-| `X.509/` | X.509 certificate parsing and chain validation |
+| `asymmetric_key/` | RSA and elliptic curve cryptography examples |
+| `merkle_tree/` | Hash functions and Merkle tree implementations |
+| `x509/` | X.509 certificate parsing and chain validation |
 
 ### Network Automation
 
 | Directory | Description |
 |-----------|-------------|
-| `Closed-Loop Network Automation/` | Automated network state reconciliation |
-| `Containerlab/` | Container-based network topology definitions |
+| `closed_loop_automation/` | Automated network state reconciliation |
+| `containerlab/` | Container-based network topology definitions |
 
 ### Additional Topics
 
 | Directory | Description |
 |-----------|-------------|
-| `DCE File System/` | Distributed Computing Environment file operations |
-| `Karakter Felsefesi/` | Character encoding and text representation |
+| `dce_file_system/` | Distributed Computing Environment file operations |
+| `character_encoding/` | Character encoding and text representation |
 
 ---
 
@@ -216,15 +216,15 @@ Each directory contains standalone examples. Navigate to the desired directory a
 
 ```bash
 # Internet Layer examples
-cd "Go Codes/InternetLayer"
+cd "Go Codes/internet_layer"
 go run .
 
 # gRPC Server
-cd "Go Codes/GRPC_Server"
+cd "Go Codes/grpc_server"
 go run .
 
 # Multithreaded Echo Server
-cd "Go Codes/Multithreadedecho"
+cd "Go Codes/multithreaded_echo"
 go run .
 ```
 
@@ -233,10 +233,10 @@ go run .
 ```
 go-network-programming/
 ├── Go Codes/
-│   ├── InternetLayer/          # Start here for IP fundamentals
-│   ├── Day Time Server/        # Simple protocol implementation
-│   ├── Multithreadedecho/      # Concurrent server patterns
-│   ├── GRPC_Server/            # Modern RPC examples
+│   ├── internet_layer/          # Start here for IP fundamentals
+│   ├── daytime_server/          # Simple protocol implementation
+│   ├── multithreaded_echo/      # Concurrent server patterns
+│   ├── grpc_server/             # Modern RPC examples
 │   └── ...                     # Additional modules
 └── README.md
 ```
@@ -308,11 +308,11 @@ While educational, the code follows production best practices:
 
 Examples are organized to support progressive learning:
 
-1. Start with basic socket operations (`InternetLayer/`)
-2. Progress to protocol implementations (`Day Time Server/`)
-3. Explore concurrent patterns (`Multithreadedecho/`)
-4. Advance to modern RPC (`GRPC_Server/`)
-5. Apply to automation (`Closed-Loop Network Automation/`)
+1. Start with basic socket operations (`internet_layer/`)
+2. Progress to protocol implementations (`daytime_server/`)
+3. Explore concurrent patterns (`multithreaded_echo/`)
+4. Advance to modern RPC (`grpc_server/`)
+5. Apply to automation (`closed_loop_automation/`)
 
 ---
 
